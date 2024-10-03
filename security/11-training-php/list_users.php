@@ -9,7 +9,7 @@ $params = [];
 if (!empty($_GET['keyword'])) {
     $params['keyword'] = $_GET['keyword'];
 }
-
+//var_dump($_SESSION['id']);
 $users = $userModel->getUsers($params);
 ?>
 <!DOCTYPE html>
@@ -25,7 +25,26 @@ $users = $userModel->getUsers($params);
             <div class="alert alert-warning" role="alert">
                 List of users! <br>
                 Hacker: http://php.local/list_users.php?keyword=ASDF%25%22%3BTRUNCATE+banks%3B%23%23
+                <div class="alert alert-info">
+                <?php if (!empty($_SESSION['id'])): ?>
+                <strong>Chào mừng, <?php echo $_SESSION['id']; ?>!</strong>
+                <?php else: ?>
+                <strong>Bạn chưa đăng nhập!</strong>
+                <?php endif; ?>
             </div>
+            </div>
+            <?php
+            if (isset($_SESSION['error'])) {
+                echo '<div class="alert alert-danger">' . $_SESSION['error'] . '</div>';
+                unset($_SESSION['error']); // Xóa thông báo sau khi hiển thị
+            }
+            
+            // // Kiểm tra và hiển thị thông báo thành công nếu có
+            // if (isset($_SESSION['success'])) {
+            //     echo '<div class="alert alert-success">' . $_SESSION['success'] . '</div>';
+            //     unset($_SESSION['success']); // Xóa thông báo sau khi hiển thị
+            // }
+            ?>
             <table class="table table-striped">
                 <thead>
                     <tr>
@@ -50,7 +69,7 @@ $users = $userModel->getUsers($params);
                                 <?php echo $user['type']?>
                             </td>
                             <td>
-                                <a href="form_user.php?id=<?php echo $user['id'] ?>">
+                                <a href="form_user.php?id=<?php echo base64_encode($user['id']) ?>">
                                     <i class="fa fa-pencil-square-o" aria-hidden="true" title="Update"></i>
                                 </a>
                                 <a href="view_user.php?id=<?php echo $user['id'] ?>">

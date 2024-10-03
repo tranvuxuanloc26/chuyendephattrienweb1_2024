@@ -7,9 +7,12 @@ $userModel = new UserModel();
 $user = NULL; // Add new user
 $_id = NULL;
 
-if (!empty($_GET['id'])) {
-    $_id = $_GET['id'];
-    $user = $userModel->findUserById($_id); // Update existing user
+if (isset($_GET['id'])) {
+    $decodedId = base64_decode($_GET['id']);
+    if (is_numeric($decodedId)) {
+        $_id = intval($decodedId); 
+        $user = $userModel->findUserById($_id); 
+    }
 }
 
 $errors = []; // Mảng để lưu trữ lỗi
@@ -29,10 +32,12 @@ if (!empty($_POST['submit'])) {
     if (empty($errors)) {
         if (!empty($_id)) {
             $userModel->updateUser($_POST);
+            header('location: list_users.php');
         } else {
             $userModel->insertUser($_POST);
+            header('location: login.php');
         }
-        header('location: list_users.php');
+        
         exit();
     }
 }
@@ -48,16 +53,16 @@ if (!empty($_POST['submit'])) {
     <?php include 'views/header.php'; ?>
     <div class="container">
 
-        <?php if ($user || !isset($_id)) { ?>
+        <?php if ($user || !isset($decodedId)) { ?>
             <div class="alert alert-warning" role="alert">
                 User form
             </div>
-            <?php if (!empty($errors)) { ?>
+            <?php if (!empty($_SESSION['error'])) { ?>
                 <div class="alert alert-danger">
                     <ul>
-                        <?php foreach ($errors as $error) { ?>
-                            <li><?php echo $error; ?></li>
-                        <?php } ?>
+                        
+                            <li><?php echo $_SESSION['error']; ?></li>
+                        
                     </ul>
                 </div>
             <?php } ?>
