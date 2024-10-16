@@ -1,0 +1,176 @@
+@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@400;700&display=swap');
+
+@font-family: 'Raleway', sans-serif;
+@bg-color: #f5f5f5;
+@heading-color: #333;
+@text-color: #666666;
+@btn-bg-color: #fff;
+@btn-border-color: #f2480c;
+@btn-hover-bg-color: #f2480c;
+@btn-hover-text-color: #fff;
+
+body {
+  font-family: @font-family; 
+  margin: 0;
+  padding: 0;
+}
+
+.type-3039 {
+  background-color: @bg-color;
+.km-line-sep-insider {
+    float: left;
+    margin-left: 50%;
+    transform: translateX(-50%);
+    width: 170px;
+    height: 1px;
+    text-align: center;
+}
+
+.km-line-sep-icon {
+    border-radius: 0;
+    margin-top: -22px;
+    width: 70px;
+    height: 70px;
+    line-height: 70px;
+    background: #ffffff;
+}
+
+.km-icon-tools-2 {
+    font-size: 35px;
+    color: #f2480c;
+}
+
+.km-line-sep-fill {
+    background: #dddddd;
+}
+  .kswr-heading-container {
+    text-align: center; /* Căn giữa tiêu đề */
+
+    .kswr-heading-title {
+      font-size: 44px; /* Kích thước tiêu đề */
+      font-family: @font-family;
+      font-weight: 300;
+      margin: 0;
+      color: @heading-color;
+      background-clip: inherit;
+      background-color: inherit;
+      -webkit-text-fill-color: @heading-color;
+    }
+
+    .kswr-heading-content {
+      font-size: 15px; /* Kích thước nội dung */
+      margin: 0;
+      color: @text-color;
+    }
+  }
+
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+  }
+
+  .row {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+  }
+
+  .col-xs-12,
+  .col-md-3,
+  .col-sm-3 {
+    flex: 0 0 25%;
+    padding: 20px;
+    box-sizing: border-box;
+    display: flex; /* Thêm để căn giữa nội dung */
+    justify-content: center; /* Căn giữa ngang */
+    align-items: center; /* Căn giữa dọc */
+  }
+
+  .service-item {
+    display: flex;
+    flex-direction: column; /* Để sắp xếp nội dung theo chiều dọc */
+    justify-content: space-between; /* Căn giữa nội dung */
+    text-align: center; /* Căn giữa văn bản */
+
+    .service-item-image {
+      overflow: hidden;
+      border-radius: 5px; /* Bo tròn 5px cho hình ảnh */
+      width: 100%; /* Đặt chiều rộng 100% để căn giữa */
+      height: auto; /* Chiều cao tự động */
+
+      .img-hover-effect {
+        display: flex; /* Để căn giữa hình ảnh */
+        justify-content: center; /* Căn giữa hình ảnh */
+        align-items: center; /* Căn giữa hình ảnh */
+        border-radius: 15px; /* Bo tròn 15px cho hình ảnh */
+        overflow: hidden; /* Ẩn phần ngoài hình tròn */
+
+        img {
+          width: 100%;
+          height: auto;
+          transition: transform 0.3s;
+
+          &:hover {
+            transform: scale(1.1);
+          }
+        }
+      }
+    }
+
+    .service-item-footer {
+      padding: 20px 0;
+
+      h4 {
+        color: #000; /* Màu đen cho tiêu đề */
+        font-size: 20px; /* Kích thước tiêu đề 20px */
+        margin-bottom: 15px; /* Khoảng cách 15px từ tiêu đề đến nội dung */
+        font-weight: bold; /* Viết đậm tiêu đề */
+      }
+
+      p {
+        color: #333;
+        font-size: 16px;
+        line-height: 1.5;
+        margin-bottom: 15px; /* Khoảng cách 15px từ nội dung đến thẻ a */
+      }
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 10px 20px;
+      background-color: @btn-bg-color; /* Nền trắng */
+      color: #000; /* Màu chữ đen */
+      text-decoration: none;
+      border: 2px solid @btn-border-color; /* Viền màu #f2480c */
+      border-radius: 0; /* Không bo tròn viền */
+      transition: background-color 0.3s, border-color 0.3s;
+
+      &:hover {
+        background-color: @btn-hover-bg-color; /* Đổi màu nền khi hover */
+        color: @btn-hover-text-color; /* Đổi màu chữ khi hover */
+      }
+    }
+  }
+
+  /* Media queries */
+  @media (max-width: 768px) {
+    .container {
+      padding: 20px;
+    }
+
+    .col-xs-12,
+    .col-md-3,
+    .col-sm-3 {
+      flex: 0 0 50%;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .col-xs-12,
+    .col-md-3,
+    .col-sm-3 {
+      flex: 0 0 100%;
+    }
+  }
+}
